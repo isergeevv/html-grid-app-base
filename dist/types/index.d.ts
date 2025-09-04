@@ -111,7 +111,7 @@ declare class GridAppGrid {
     setMoving(value: 'grid' | 'element'): void;
     stopMoving(): void;
     getNextGridElementId(): number;
-    createElement<T extends GridAppGridElement>(type: string, label: string): T;
+    createElement(type: string, label: string): GridAppGridElement;
     calculateMovePosition(viewPortMouseCoords: Position, position: Position): {
         x: number;
         y: number;

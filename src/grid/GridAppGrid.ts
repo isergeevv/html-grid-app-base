@@ -150,7 +150,7 @@ export default class GridAppGrid {
     return this._currentElementId++;
   }
 
-  createElement<T extends GridAppGridElement>(type: string, label: string): T {
+  createElement(type: string, label: string): GridAppGridElement {
     const GridElementConstructor = this._gridElementConstructors.find(
       (c) => c.type === type && c.label === label,
     )?.constructor;
@@ -161,7 +161,7 @@ export default class GridAppGrid {
     const component = new GridElementConstructor(this);
     component.setId(this.getNextGridElementId());
 
-    return component as T;
+    return component;
   }
 
   calculateMovePosition(viewPortMouseCoords: Position, position: Position) {
