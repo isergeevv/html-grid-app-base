@@ -1,27 +1,31 @@
-name: Node.js Package
+name: Publish to GitHub Packages
 
 on:
   push:
     tags:
-      - 'v*'
+      - "v*" # e.g. v1.0.0
 
 jobs:
-  release-publish:
+  publish:
     runs-on: ubuntu-latest
-    permissions: write-all
+
     steps:
-      - name: Setup repo
-        uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           registry-url: https://npm.pkg.github.com/
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Publish Package
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Publish to GitHub Packages
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
