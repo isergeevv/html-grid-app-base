@@ -14,6 +14,13 @@
     "build:css": "sass style/index.scss dist/css/style.css",
     "build:watch": "rollup -c -w"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isergeevv/html-grid-app-base.git"
+  },
+  "publishConfig": {
+    "@isergeevv:registry": "https://npm.pkg.github.com"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
