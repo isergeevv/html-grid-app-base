@@ -150,18 +150,18 @@ export default class GridAppGrid {
     return this._currentElementId++;
   }
 
-  createElement(type: string, label: string): GridAppGridElement {
-    const ComponentConstructor = this._gridElementConstructors.find(
+  createElement<T extends GridAppGridElement>(type: string, label: string): T {
+    const GridElementConstructor = this._gridElementConstructors.find(
       (c) => c.type === type && c.label === label,
     )?.constructor;
-    if (!ComponentConstructor) {
+    if (!GridElementConstructor) {
       throw new Error(`No component type registered for type "${type}" and id "${label}".`);
     }
 
-    const component = new ComponentConstructor(this);
+    const component = new GridElementConstructor(this);
     component.setId(this.getNextGridElementId());
 
-    return component;
+    return component as T;
   }
 
   calculateMovePosition(viewPortMouseCoords: Position, position: Position) {

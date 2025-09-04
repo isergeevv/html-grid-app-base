@@ -113,11 +113,11 @@ class GridAppGrid {
         return this._currentElementId++;
     }
     createElement(type, label) {
-        const ComponentConstructor = this._gridElementConstructors.find((c) => c.type === type && c.label === label)?.constructor;
-        if (!ComponentConstructor) {
+        const GridElementConstructor = this._gridElementConstructors.find((c) => c.type === type && c.label === label)?.constructor;
+        if (!GridElementConstructor) {
             throw new Error(`No component type registered for type "${type}" and id "${label}".`);
         }
-        const component = new ComponentConstructor(this);
+        const component = new GridElementConstructor(this);
         component.setId(this.getNextGridElementId());
         return component;
     }
