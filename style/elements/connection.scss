@@ -1,0 +1,7 @@
+.app-element[data-type='connection'] {
+  width: 1px;
+  height: calc(var(--dist) * 1px);
+  transform-origin: 0% 0%;
+  rotate: calc(var(--deg) * 1deg);
+  z-index: 10;
+}

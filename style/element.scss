@@ -1,0 +1,30 @@
+.app-element {
+  position: absolute;
+  min-width: calc(var(--gridapp-element-min-w) * 1px);
+  min-height: calc(var(--gridapp-element-min-h) * 1px);
+  width: calc(var(--gridapp-element-w) * 1px);
+  height: calc(var(--gridapp-element-h) * 1px);
+  background-color: rgba(var(--gridapp-element-bg-color), 1);
+  color: rgba(var(--gridapp-element-text-color), 1);
+
+  &[data-moving] {
+    pointer-events: none;
+  }
+
+  &[data-focused] {
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.18), 0 1.5px 6px 0 rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.2s ease;
+  }
+}
+
+.app-grid {
+  > .app-element {
+    left: calc(((var(--gridapp-offset-x) + var(--gridapp-element-x)) * 1px));
+    top: calc(((var(--gridapp-offset-y) + var(--gridapp-element-y)) * 1px));
+
+    .app-element {
+      left: calc(var(--gridapp-element-x) * 1px);
+      top: calc(var(--gridapp-element-y) * 1px);
+    }
+  }
+}
